@@ -11,7 +11,7 @@ window.ROADMAP = {
   },
 
   evening: [
-    { time: "5:00 to 5:10",  kind: "ritual", text: "Start: read yesterday's \"next step\" note. 5 flashcards from the term map." },
+    { time: "5:00 to 5:10",  kind: "ritual", text: "Start: read the first step you wrote at the end of your last night (the Tonight tab shows it). 5 flashcards from the term map." },
     { time: "5:10 to 5:40",  kind: "dsa",    text: "Block 1: one DSA problem, timer on." },
     { time: "5:40 to 5:50",  kind: "break",  text: "Break: walk, water. No phone scrolling." },
     { time: "5:50 to 7:05",  kind: "sd",     text: "Block 2: system design. 35 min, stand up for 5 min, 35 min." },
@@ -19,7 +19,7 @@ window.ROADMAP = {
     { time: "8:00 to 9:15",  kind: "build",  text: "Block 3: AI project. You type every line." },
     { time: "9:15 to 9:20",  kind: "break",  text: "Break." },
     { time: "9:20 to 9:50",  kind: "talk",   text: "Block 4: say it out loud. Record a 1-minute explanation of tonight's design topic, then do the talk task." },
-    { time: "9:50 to 10:00", kind: "ritual", text: "Shut down: tick this site, write 3 lines, write tomorrow's first step." },
+    { time: "9:50 to 10:00", kind: "ritual", text: "Shut down: tick this site. Write 3 lines and tomorrow's first step in the Tonight tab's boxes." },
     { time: "10:00",         kind: "ritual", text: "Hard stop, even in the middle of something. Stopping mid-task makes tomorrow's start easy." }
   ],
 

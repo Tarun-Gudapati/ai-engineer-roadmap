@@ -11,10 +11,10 @@
     try {
       const s = JSON.parse(localStorage.getItem(KEY));
       if (s && typeof s === "object" && s.done) {
-        return { done: s.done || {}, activity: s.activity || {}, reviews: s.reviews || {} };
+        return { done: s.done || {}, activity: s.activity || {}, reviews: s.reviews || {}, log: s.log || {} };
       }
     } catch (e) { /* fall through to a fresh state */ }
-    return { done: {}, activity: {}, reviews: {} };
+    return { done: {}, activity: {}, reviews: {}, log: {} };
   }
   function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
 
@@ -111,9 +111,22 @@
       const night = w.nights[nightIdx];
       html += "<h3>Night " + (nightIdx + 1) + " of 4</h3>";
       html += '<div class="callout">Too tired tonight? Do the <strong>minimum day</strong>: Block 1 and the shut-down note. That still counts.</div>';
-      html += '<ul class="timeline">' + R.evening.map(b => {
+      const todayIso = isoOf(today());
+      const prevDate = Object.keys(state.log).filter(d => d < todayIso && state.log[d].next).sort().pop();
+      const todayLog = state.log[todayIso] || {};
+      html += '<ul class="timeline">' + R.evening.map((b, i) => {
         let what = esc(b.text);
+        if (i === 0) {
+          what += prevDate
+            ? '<div class="callout good"><strong>Your next step from ' + fmt(parseDate(prevDate)) + ":</strong> " + esc(state.log[prevDate].next) + "</div>"
+            : '<div class="callout small">No note yet. Tonight, write one at 9:50 in the shut-down box below.</div>';
+        }
         if (TRACK_KEYS.includes(b.kind)) what += checkbox(nightId(w, nightIdx, b.kind), night[b.kind]);
+        if (b.kind === "ritual" && b.time.startsWith("9:50")) {
+          what += '<div class="review" style="margin-top:8px">' +
+            '<div><label>3 lines: what I did, what was hard, what I learned</label><textarea data-log="' + todayIso + '" data-field="lines">' + esc(todayLog.lines || "") + "</textarea></div>" +
+            '<div><label>Tomorrow\'s first step (be specific)</label><textarea data-log="' + todayIso + '" data-field="next">' + esc(todayLog.next || "") + "</textarea></div></div>";
+        }
         return '<li class="' + b.kind + '"><span class="t">' + esc(b.time) + '</span><div class="what">' + what + "</div></li>";
       }).join("") + "</ul>";
     } else {
@@ -202,10 +215,17 @@
   });
 
   document.addEventListener("input", e => {
-    const wk = e.target.dataset && e.target.dataset.review;
-    if (!wk) return;
-    state.reviews[wk] = state.reviews[wk] || {};
-    state.reviews[wk][e.target.dataset.field] = e.target.value;
+    const ds = e.target.dataset || {};
+    if (ds.review) {
+      state.reviews[ds.review] = state.reviews[ds.review] || {};
+      state.reviews[ds.review][ds.field] = e.target.value;
+    } else if (ds.log) {
+      state.log[ds.log] = state.log[ds.log] || {};
+      state.log[ds.log][ds.field] = e.target.value;
+      if (e.target.value.trim()) state.activity[ds.log] = Math.max(1, state.activity[ds.log] || 0);
+    } else {
+      return;
+    }
     save();
   });
 
@@ -241,7 +261,7 @@
     file.text().then(txt => {
       const s = JSON.parse(txt);
       if (!s || typeof s.done !== "object") throw new Error("Not a progress file");
-      state = { done: s.done, activity: s.activity || {}, reviews: s.reviews || {} };
+      state = { done: s.done, activity: s.activity || {}, reviews: s.reviews || {}, log: s.log || {} };
       save();
       renderAll();
     }).catch(err => alert("Import failed: " + err.message));
@@ -250,7 +270,7 @@
 
   document.getElementById("btn-reset").addEventListener("click", () => {
     if (!confirm("Delete all progress in this browser?")) return;
-    state = { done: {}, activity: {}, reviews: {} };
+    state = { done: {}, activity: {}, reviews: {}, log: {} };
     save();
     renderAll();
   });
