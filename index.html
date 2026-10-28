@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Engineer Roadmap · Tarun Gudapati</title>
+  <meta name="description" content="A 12-week plan from .NET developer to LLM application engineer, tracked night by night.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1 id="title"></h1>
+      <p class="subtitle" id="subtitle"></p>
+      <div class="stats">
+        <div class="stat"><span class="num" id="stat-overall">0%</span><span class="lbl">overall</span></div>
+        <div class="stat"><span class="num" id="stat-week">–</span><span class="lbl">current week</span></div>
+        <div class="stat"><span class="num" id="stat-days">–</span><span class="lbl">days to ready</span></div>
+        <div class="stat"><span class="num" id="stat-active">0</span><span class="lbl">active days, last 14</span></div>
+      </div>
+      <div class="bar big"><div class="fill" id="bar-overall"></div></div>
+      <div class="dots" id="activity" aria-label="Activity in the last 14 days"></div>
+    </div>
+  </header>
+
+  <nav class="tabs wrap" role="tablist">
+    <button class="tab active" data-tab="tonight">Tonight</button>
+    <button class="tab" data-tab="weeks">All weeks</button>
+    <button class="tab" data-tab="tracks">Tracks</button>
+    <button class="tab" data-tab="routine">Routine and rules</button>
+  </nav>
+
+  <main class="wrap">
+    <section id="tonight" class="panel active"></section>
+    <section id="weeks" class="panel"></section>
+    <section id="tracks" class="panel"></section>
+    <section id="routine" class="panel"></section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Progress is saved in this browser only.
+      <button class="link" id="btn-export">Export progress</button> ·
+      <label class="link">Import<input type="file" id="file-import" accept="application/json" hidden></label> ·
+      <button class="link danger" id="btn-reset">Reset</button>
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
