@@ -48,7 +48,7 @@ window.ROADMAP = {
       n: 2, start: "2026-10-26", title: "Concurrency, and ship the API",
       nights: [
         { dsa: "Two Sum, then Contains Duplicate (hash map)",
-          sd: "Race conditions and lost updates: draw the double-booked cab on a timeline",
+          sd: "Uber map first (35 min): the 7 steps, boxes only. Then zoom in (35 min): draw the double-booked cab on a timeline",
           build: "Run `/analyze` in `/docs`. Read `main.py` top to bottom and list the lines you can't explain",
           talk: "Mock questions 1 and 2 about the work AI feature: answer out loud, then type them" },
         { dsa: "Valid Anagram (count with a dict)",
