@@ -71,7 +71,7 @@ window.ROADMAP = {
       n: 3, start: "2026-11-02", title: "Locking, and the first Claude call",
       nights: [
         { dsa: "Top K Frequent Elements",
-          sd: "Isolation levels: which anomaly each one stops (dirty read, non-repeatable read, phantom)",
+          sd: "First, finish CabDemo: a `CHECK` constraint so a Requested ride has no driver and an Accepted ride has one. Then isolation levels: which anomaly each one stops (dirty read, non-repeatable read, phantom)",
           build: "Install the Anthropic SDK. Put the key in `.env` with `python-dotenv`. First hello call",
           talk: "2-minute pitch for the AI transaction categoriser" },
         { dsa: "Product of Array Except Self",
