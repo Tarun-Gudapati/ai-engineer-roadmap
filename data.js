@@ -87,7 +87,7 @@ window.ROADMAP = {
           build: "`POST /categorise` endpoint, plus a `pytest` test with a fake Claude client",
           talk: "Term quiz: 15 terms, one sentence each (ask the AI to quiz you)" }
       ],
-      sat: ["SQL ladder Level 2: aggregation (`GROUP BY`, `HAVING`)", "Catch-up"],
+      sat: ["SQL ladder Level 2: aggregation (`GROUP BY`, `HAVING`)", "Build the cab app in C#: console app + EF Core + LocalDB. `Ride` entity, `RideService.AcceptAsync` with `ExecuteUpdateAsync`, return rows affected == 1"],
       work: "List every place the AI code can fail, and what happens to the user when it does."
     },
     {
@@ -110,7 +110,7 @@ window.ROADMAP = {
           build: "Async parallel calls: `asyncio.gather` with a semaphore. Time it against one-by-one",
           talk: "Write a one-page improvement proposal for your lead" }
       ],
-      sat: ["SQL ladder Level 3: joins", "Checkpoint 1 check, then catch-up"],
+      sat: ["SQL ladder Level 3: joins", "Build: two tasks accept the same ride at once; prove only one wins. Unique filtered indexes in `OnModelCreating`. Idempotency key on `RequestRide`", "Checkpoint 1 check"],
       work: "Propose one improvement to your lead: an eval, or moving secrets into Key Vault."
     },
     {
@@ -133,7 +133,7 @@ window.ROADMAP = {
           build: "Run 10 search queries and read the top 3 chunks for each",
           talk: "Explain cache-aside and its failure mode in 1 minute" }
       ],
-      sat: ["SQL ladder Level 4: subqueries, CTEs, basic window functions", "Catch-up"],
+      sat: ["SQL ladder Level 4: subqueries, CTEs, basic window functions", "Build: Redis in Docker for driver locations (`GEOADD`, `GEOSEARCH`), available and busy drivers"],
       work: "Start the categoriser eval: compare the AI's categories with what assessors kept or changed."
     },
     {
@@ -156,7 +156,7 @@ window.ROADMAP = {
           build: "`POST /ask` endpoint, with tests",
           talk: "Explain the outbox pattern in 1 minute" }
       ],
-      sat: ["Mock 1 with the AI (45 min): SQL and concurrency", "Checkpoint 2 check, then catch-up"],
+      sat: ["Mock 1 with the AI (45 min): SQL and concurrency", "Build: ASP.NET minimal API for the cab app: `POST /rides`, `POST /rides/{id}/accept`, `GET /rides/{id}`", "Checkpoint 2 check"],
       work: "Categoriser eval continues."
     },
     {
@@ -179,7 +179,7 @@ window.ROADMAP = {
           build: "Compare your plain RAG with the LangChain one: half a page",
           talk: "Rehearse the cab design for Saturday's mock" }
       ],
-      sat: ["Mock 2: present the cab booking design out loud (45 min)", "Catch-up"],
+      sat: ["Mock 2: present the cab booking design out loud (45 min), using your running app", "Build: outbox table + background worker that notifies the drivers who lost"],
       work: "Finish the categoriser eval and get a real accuracy number."
     },
     {
